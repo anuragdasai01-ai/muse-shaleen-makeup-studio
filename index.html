@@ -265,12 +265,21 @@ footer a:hover{color:var(--gold-soft)}
 .rv-item{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s cubic-bezier(.22,.61,.21,1);transition-delay:var(--d,0ms)}
 .rv-item.visible{opacity:1;transform:none}
 @keyframes heroUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-.hero-copy>*{animation:heroUp .9s cubic-bezier(.22,.61,.21,1) both}
-.hero-copy>*:nth-child(2){animation-delay:.08s}
-.hero-copy>*:nth-child(3){animation-delay:.16s}
-.hero-copy>*:nth-child(4){animation-delay:.24s}
-.hero-copy>*:nth-child(5){animation-delay:.32s}
-.hero-media{animation:heroUp 1.05s .18s cubic-bezier(.22,.61,.21,1) both}
+.hero-copy>*{animation:heroUp .9s cubic-bezier(.22,.61,.21,1) 1.5s both}
+.hero-copy>*:nth-child(2){animation-delay:1.58s}
+.hero-copy>*:nth-child(3){animation-delay:1.66s}
+.hero-copy>*:nth-child(4){animation-delay:1.74s}
+.hero-copy>*:nth-child(5){animation-delay:1.82s}
+.hero-media{animation:heroUp 1.05s 1.68s cubic-bezier(.22,.61,.21,1) both}
+.splash{position:fixed;inset:0;z-index:1000;background:radial-gradient(720px 420px at 50% 38%,rgba(217,185,138,.16),transparent 65%),#16100A;display:flex;align-items:center;justify-content:center;animation:splashOut .7s ease 1.55s forwards}
+@keyframes splashOut{to{opacity:0;visibility:hidden}}
+.splash-inner{text-align:center;color:var(--ivory);padding:20px}
+.splash-mark{width:84px;height:84px;margin:0 auto 18px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,'Times New Roman',serif;font-size:2.4rem;color:var(--gold);animation:splashMark .8s cubic-bezier(.22,.61,.21,1) both}
+@keyframes splashMark{from{opacity:0;transform:scale(.78)}to{opacity:1;transform:scale(1)}}
+.splash-name{font-family:Georgia,'Times New Roman',serif;font-size:2.3rem;line-height:1.1;animation:heroUp .8s ease .25s both}
+.splash-sub{letter-spacing:.42em;font-size:.7rem;font-weight:700;color:#D8BE8C;margin-top:8px;text-indent:.42em;animation:heroUp .8s ease .4s both}
+.splash-line{height:1.5px;width:150px;margin:20px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);animation:lineGrow .9s cubic-bezier(.22,.61,.21,1) .5s forwards}
+@keyframes lineGrow{to{transform:scaleX(1)}}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
 .hero-media .frame img{width:100%;height:100%;object-fit:cover;animation:kenburns 16s ease-in-out infinite alternate}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
@@ -280,6 +289,7 @@ footer a:hover{color:var(--gold-soft)}
 .btn:hover::after{transform:translateX(130%)}
 #scrollProgress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:500;background:linear-gradient(90deg,var(--gold),#E9CD93,var(--gold));transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
 @media (prefers-reduced-motion: reduce){
+  .splash{display:none}
   .reveal{filter:none}
   .rv-item{opacity:1;transform:none}
   #scrollProgress{display:none}
@@ -287,6 +297,16 @@ footer a:hover{color:var(--gold-soft)}
 </style>
 </head>
 <body>
+
+<!-- Premium opening splash -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash-inner">
+    <div class="splash-mark">S</div>
+    <div class="splash-name">Shaleen</div>
+    <div class="splash-sub">MAKEUP STUDIO</div>
+    <div class="splash-line"></div>
+  </div>
+</div>
 
 <!-- ================= HEADER ================= -->
 <header id="siteHeader">
@@ -891,6 +911,10 @@ initChrome();
     addEventListener("scroll", onScroll, {passive:true});
     onScroll();
   }
+
+  /* splash cleanup */
+  var spEl = document.getElementById("splash");
+  if (spEl) setTimeout(function(){ if (spEl.parentNode) spEl.parentNode.removeChild(spEl); }, 2600);
 })();
 </script>
 </body>
