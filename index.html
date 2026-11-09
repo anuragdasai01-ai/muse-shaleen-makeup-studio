@@ -351,8 +351,10 @@ header.scrolled{background:rgba(255,252,246,.97);border-bottom:1px solid rgba(20
 .review-card .rev-line [data-review-count]{color:var(--gold);font-weight:700}
 .review-card .rev-sub{font-size:.95rem;color:var(--ink-soft);max-width:460px;margin:0 auto 24px}
 
-/* Booking message box: resize sirf neeche (vertical) — side me kheenchne se pura page side hota tha (2026-11-09) */
-textarea{resize:vertical;max-width:100%}
+/* Booking message box: koi resize handle nahi aur side wali scrollbar strip bhi nahi — box apne aap saaf rahega (2026-11-09) */
+textarea{resize:none;max-width:100%}
+#bkMsg{min-height:108px;line-height:1.5;overflow:hidden;scrollbar-width:none}
+#bkMsg::-webkit-scrollbar{display:none;width:0;height:0}
 
 </style>
 </head>
@@ -830,6 +832,9 @@ function preselectService(name){
   document.getElementById("booking").scrollIntoView({behavior:"smooth"});
 }
 function initBooking(){
+  const msg = $("#bkMsg");
+  if (msg){ const grow = () => { msg.style.height = "auto"; msg.style.height = (msg.scrollHeight + 3) + "px"; };
+    msg.addEventListener("input", grow); grow(); }
   const form = $("#bookingForm");
   form.addEventListener("submit", e => {
     e.preventDefault();
