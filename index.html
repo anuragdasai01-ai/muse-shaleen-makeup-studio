@@ -356,6 +356,13 @@ textarea{resize:none;max-width:100%}
 #bkMsg{min-height:108px;line-height:1.5;overflow:hidden;scrollbar-width:none}
 #bkMsg::-webkit-scrollbar{display:none;width:0;height:0}
 
+
+  /* Real-photo layout fixes: balance the Special panel next to the tall real couple photo */
+  @media(min-width:940px){
+    .special-media{position:relative;aspect-ratio:10/8.4;max-height:640px}
+    .special-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+    .special-copy{display:flex;flex-direction:column;justify-content:center}
+  }
 </style>
 </head>
 <body>
@@ -748,7 +755,7 @@ const CONFIG = {
     { category: "Waxing", img: "images/gallery-mehndi.jpg", pos: "50% 36%",
       desc: "Smooth, careful waxing in a clean and private setting, at a pace that keeps you comfortable.",
       items: ["Facial Wax", "Hand Wax", "Leg Wax", "Full Body Wax"] },
-    { category: "Nail Care", img: "images/gallery-closeup.jpg", pos: "50% 40%",
+    { category: "Nail Care", img: "images/gallery-closeup.jpg", pos: "50% 26%",
       desc: "Neat, polished hands and feet — classic care or a little colour for the occasion.",
       items: ["Manicure", "Pedicure", "Nail Art"] }
   ],
